@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'ui/pages/home_page/home_page.dart';
+import './ui/pages/home_page/home_page.dart';
 
 class CatTriviaApp extends StatelessWidget {
   const CatTriviaApp({Key? key}) : super(key: key);

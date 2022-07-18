@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cat_trivia/cubit/facts_list_view/facts_list_view_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../cubit/facts_list_view/facts_list_view_cubit.dart';
 import '../../../../di/di.dart';
 
 class FactsListView extends StatelessWidget {
@@ -38,6 +38,7 @@ class FactsListView extends StatelessWidget {
                           state.facts[index].fact,
                           maxLines: 5,
                           minFontSize: 16,
+                          textAlign: TextAlign.center,
                         ),
                       ),
                       const Divider(),

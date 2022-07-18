@@ -1,11 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cat_trivia/resources/app_constants.dart';
-import 'package:cat_trivia/ui/pages/error_page/error_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../cubit/random_fact_view/random_fact_view_cubit.dart';
 import '../../../../di/di.dart';
+import '../../../../resources/app_constants.dart';
+import '../../error_page/error_page.dart';
 
 class RandomFactView extends StatelessWidget {
   const RandomFactView({Key? key}) : super(key: key);
