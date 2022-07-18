@@ -29,6 +29,8 @@ class RandomFactView extends StatelessWidget {
             return const Center(
               child: CircularProgressIndicator(color: Colors.orange),
             );
+          case RandomFactViewStatus.failure:
+            return const ErrorPage();
           case RandomFactViewStatus.success:
             return Padding(
               padding: const EdgeInsets.only(
@@ -39,16 +41,7 @@ class RandomFactView extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  AspectRatio(
-                    aspectRatio: 16 / 12,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: Image(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(state.image),
-                      ),
-                    ),
-                  ),
+                  _buildCatImage(state),
                   const SizedBox(height: 36),
                   AutoSizeText(
                     state.fact.fact,
@@ -61,10 +54,21 @@ class RandomFactView extends StatelessWidget {
                 ],
               ),
             );
-          case RandomFactViewStatus.failure:
-            return const ErrorPage();
         }
       },
+    );
+  }
+
+  Widget _buildCatImage(RandomFactViewState state) {
+    return AspectRatio(
+      aspectRatio: 16 / 12,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Image(
+          fit: BoxFit.cover,
+          image: NetworkImage(state.image),
+        ),
+      ),
     );
   }
 
@@ -90,10 +94,7 @@ class RandomFactView extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
           ),
         ),
-        child: const Text(
-          AppConstants.meow,
-          style: TextStyle(fontSize: 16),
-        ),
+        child: const Text(AppConstants.meow, style: TextStyle(fontSize: 16)),
       ),
     );
   }

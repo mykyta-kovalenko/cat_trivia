@@ -12,9 +12,7 @@ class FactService {
 
   FactService(this._factsClient);
 
-  Future<Fact> getFact() async {
-    return await _factsClient.getFact();
-  }
+  Future<Fact> getFact() async => await _factsClient.getFact();
 
   Future<String> getImage() async {
     return '${AppConstants.catImage}?v=${Random().nextInt(100)}';

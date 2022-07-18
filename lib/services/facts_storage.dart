@@ -20,9 +20,9 @@ class FactsStorage {
     _box.close();
   }
 
-  Future<List<Fact>> getFacts() async => _box.values.toList().reversed.toList();
-
-  Future<void> setFact(Fact fact) async {
-    await _box.add(fact);
+  Future<List<Fact>> getFacts() async {
+    return _box.values.toList().reversed.toList();
   }
+
+  Future<void> setFact(Fact fact) async => await _box.add(fact);
 }
