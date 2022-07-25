@@ -12,13 +12,13 @@ class RandomFactViewState extends Equatable {
   final RandomFactViewStatus status;
   final Fact fact;
   final String image;
-  final String? error;
+  final String error;
 
   const RandomFactViewState({
     this.status = RandomFactViewStatus.initial,
-    required this.fact,
-    required this.image,
-    this.error,
+    this.fact = const Fact(fact: ''),
+    this.image = '',
+    this.error = '',
   });
 
   RandomFactViewState copyWith({

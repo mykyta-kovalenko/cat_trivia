@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../cubit/random_fact_view/random_fact_view_cubit.dart';
 import '../../../../di/di.dart';
 import '../../../../resources/app_constants.dart';
+import '../../../../resources/color_constants.dart';
 import '../../error_page/error_page.dart';
 
 class RandomFactView extends StatelessWidget {
@@ -27,18 +28,13 @@ class RandomFactView extends StatelessWidget {
           case RandomFactViewStatus.initial:
           case RandomFactViewStatus.loading:
             return const Center(
-              child: CircularProgressIndicator(color: Colors.orange),
+              child: CircularProgressIndicator(color: AppColors.orange),
             );
           case RandomFactViewStatus.failure:
             return const ErrorPage();
           case RandomFactViewStatus.success:
             return Padding(
-              padding: const EdgeInsets.only(
-                top: 12,
-                left: 20,
-                right: 20,
-                bottom: 120,
-              ),
+              padding: const EdgeInsets.fromLTRB(20, 12, 20, 120),
               child: Column(
                 children: [
                   _buildCatImage(state),
@@ -77,23 +73,8 @@ class RandomFactView extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          context.read<RandomFactViewCubit>().getFact();
           context.read<RandomFactViewCubit>().setFact(state.fact);
         },
-        style: ButtonStyle(
-          elevation: MaterialStateProperty.all(0),
-          overlayColor: MaterialStateProperty.all(Colors.orange),
-          foregroundColor: MaterialStateProperty.all(Colors.black),
-          backgroundColor: MaterialStateProperty.all(Colors.white),
-          padding: MaterialStateProperty.all(const EdgeInsets.all(16.0)),
-          textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 20)),
-          side: MaterialStateProperty.all(
-            const BorderSide(color: Colors.orange, width: 2),
-          ),
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-          ),
-        ),
         child: const Text(AppConstants.meow, style: TextStyle(fontSize: 16)),
       ),
     );

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../data/model/fact.dart';
-import '../../services/facts_storage.dart';
+import '../../storages/facts_storage.dart';
 import '../core/base_cubit.dart';
 
 part 'facts_list_view_state.dart';

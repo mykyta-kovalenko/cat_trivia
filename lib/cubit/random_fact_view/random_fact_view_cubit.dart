@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../data/model/fact.dart';
 import '../../services/fact_service.dart';
-import '../../services/facts_storage.dart';
+import '../../storages/facts_storage.dart';
 import '../core/base_cubit.dart';
 
 part 'random_fact_view_state.dart';
@@ -17,7 +17,7 @@ class RandomFactViewCubit extends BaseCubit<RandomFactViewState> {
   RandomFactViewCubit({
     required this.factsStorage,
     required this.factService,
-  }) : super(const RandomFactViewState(fact: Fact(fact: ''), image: ''));
+  }) : super(const RandomFactViewState());
 
   Future<void> getFact() async {
     emit(state.copyWith(status: RandomFactViewStatus.loading));
@@ -32,6 +32,8 @@ class RandomFactViewCubit extends BaseCubit<RandomFactViewState> {
   }
 
   Future<void> setFact(Fact fact) async {
+    getFact();
+
     await makeErrorHandledCall(() async {
       factsStorage.setFact(fact);
     });

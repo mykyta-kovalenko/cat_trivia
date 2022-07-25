@@ -2,13 +2,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 
 import '../data/model/fact.dart';
+import '../resources/hive_constants.dart';
 
 @injectable
 @preResolve
 class FactsStorage {
   @factoryMethod
   static Future<FactsStorage> create() async {
-    final box = await Hive.openBox<Fact>('factsBox');
+    final box = await Hive.openBox<Fact>(HiveConstants.factsBox);
     return FactsStorage._(box);
   }
 

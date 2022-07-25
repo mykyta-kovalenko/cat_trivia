@@ -9,10 +9,10 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import '../api/fact_client.dart' as _i4;
-import '../cubit/facts_list_view/facts_list_view_cubit.dart' as _i8;
-import '../cubit/random_fact_view/random_fact_view_cubit.dart' as _i7;
+import '../cubit/facts_list_view/facts_list_view_cubit.dart' as _i6;
+import '../cubit/random_fact_view/random_fact_view_cubit.dart' as _i8;
 import '../services/fact_service.dart' as _i5;
-import '../services/facts_storage.dart' as _i6;
+import '../storages/facts_storage.dart' as _i7;
 import 'modules/fact_module.dart'
     as _i9; // ignore_for_file: unnecessary_lambdas
 
@@ -25,13 +25,12 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i3.Dio>(() => factModule.dio());
   gh.lazySingleton<_i4.FactClient>(() => factModule.factClient(get<_i3.Dio>()));
   gh.factory<_i5.FactService>(() => _i5.FactService(get<_i4.FactClient>()));
-  await gh.factoryAsync<_i6.FactsStorage>(() => _i6.FactsStorage.create(),
+  gh.factory<_i6.FactsListViewCubit>(
+      () => _i6.FactsListViewCubit(factsStorage: get<dynamic>()));
+  await gh.factoryAsync<_i7.FactsStorage>(() => _i7.FactsStorage.create(),
       preResolve: true);
-  gh.factory<_i7.RandomFactViewCubit>(() => _i7.RandomFactViewCubit(
-      factsStorage: get<_i6.FactsStorage>(),
-      factService: get<_i5.FactService>()));
-  gh.factory<_i8.FactsListViewCubit>(
-      () => _i8.FactsListViewCubit(factsStorage: get<_i6.FactsStorage>()));
+  gh.factory<_i8.RandomFactViewCubit>(() => _i8.RandomFactViewCubit(
+      factsStorage: get<dynamic>(), factService: get<_i5.FactService>()));
   return get;
 }
 
